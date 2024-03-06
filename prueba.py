@@ -14,6 +14,9 @@ v = float(input('velocidad: '))
 h = b / N
 k = d / M
 
+v_max = h / k
+print('v_max =', v_max)
+
 # Inicialización de la matriz w con dimensiones correctas
 w = np.zeros((N+1, M+1))  # +1 para incluir los bordes
 
