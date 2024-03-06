@@ -21,8 +21,14 @@ print('v_max =', v_max)
 w = np.zeros((N+1, M+1))  # +1 para incluir los bordes
 
 # Función f(i, j) como fuente
+
+
 def f(x):
-    return x*(b-x)
+    if x < b/2:
+        return x
+    else:
+        return b-x 
+
 
 # Función g(i) para la condición inicial
 def g(x):
