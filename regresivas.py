@@ -38,11 +38,12 @@ def f(x):
         return 0 #aqui vemos que metemos como dato inicial un pulso es decir que no es diferenciable pero en cambio la solucion sí, luego las soluciones son regularizadas'''
     return math.exp(-(h*i-2.5)**2) 
 for i in range(N):
-    w[i][0] = f(i*h)  # Frontera inferior, recordar que xi= xo(a) + ih
-
+    w[i][0] = 10 * i*(1-i)# Frontera inferior, recordar que xi= xo(a) + ih
+    w[i][-1] = -5 #Frontera inferior, recordar que xi= xo(a) + ih
 for j in range(M):
-    w[0][j] = 0 #Frontera izquierda, recordar que t_i = jk #Fronetera izquierda (0,t)
-    w[N][j] = 0 #Frontera derecha (b,t)
+    w[0][j] = 5*j #Frontera izquierda, recordar que t_i = jk #Fronetera izquierda (0,t)
+    w[N][j] = 5 *(np.sin(2*np.pi*j))  #Frontera derecha (b,t)
+
 
 
 
@@ -51,7 +52,7 @@ for iter in range(100):  # Número de iteraciones
         for i in range(1, N):
             #w[i][j] = ((k/h*2)(w[i+1][j] + w[i-1][j]) + (1+h*i)w[i][j-1])/(1+h*i+2(k/h**2))
             #w[i][j]= (-k*(w[i+1][j]+w[i-1][j])-h*2(1+h*i)w[i][j-1])/(-2*k-h2(1+h*i)+k*h**2)
-            w[i][j]= (-k*(w[i+1][j]+w[i-1][j])-h*2(1+h*i)w[i][j-1])/(-2*k-h2(1+h*i)+k*h*2(h*i))
+            w[i][j]=((h**3 * i)*(w[i][j+1]+w[i][j-1])) - ((k**3 * j)*(w[i+1][j]+w[i-1][j]))/ 2 *(-j*k**3 + h**3 * i)
 
 
 # Crear una malla de coordenadas para graficar
